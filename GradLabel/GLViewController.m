@@ -7,6 +7,7 @@
 //
 
 #import "GLViewController.h"
+#import "GradLabel.h"
 
 @interface GLViewController ()
 
@@ -17,13 +18,32 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
-}
-
-- (void)viewDidUnload
-{
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
+	
+	UIView *view = self.view;
+	view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+	view.backgroundColor = [UIColor brownColor];
+	
+	CGRect bounds = view.bounds;
+	GradLabel *label = [[GradLabel alloc] initWithFrame:bounds];
+	label.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+	label.text = @"Grad Label, Hello!";
+	label.font = [UIFont fontWithName:@"Helvetica" size:35.f];
+	label.verticalAlignment = YES;
+	label.textAlignment = UITextAlignmentCenter;
+	label.backgroundColor = [UIColor clearColor];
+	
+	label.shining = NO;
+	label.shiningBlur = 5.f;
+	label.shiningOffset = (CGSize) { 3.f, -6.f };
+	label.shiningColor		= [UIColor cyanColor];
+	label.shiningStartColor = [UIColor yellowColor];
+	label.shiningEndColor	= [UIColor magentaColor];
+	
+	label.shadowColor = [UIColor yellowColor];
+	label.shadowOffset = (CGSize) { 4.f, 10.f };
+	[label setNeedsDisplay];
+	
+	[view addSubview:label];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation

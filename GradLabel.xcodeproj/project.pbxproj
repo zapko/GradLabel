@@ -15,6 +15,8 @@
 		254D9CC915D2870800F30D6E /* GLAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 254D9CC815D2870800F30D6E /* GLAppDelegate.m */; };
 		254D9CCC15D2870800F30D6E /* GLViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 254D9CCB15D2870800F30D6E /* GLViewController.m */; };
 		254D9CCF15D2870800F30D6E /* GLViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 254D9CCD15D2870800F30D6E /* GLViewController.xib */; };
+		254D9CD715D2874200F30D6E /* GradLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 254D9CD515D2874200F30D6E /* GradLabel.m */; };
+		254D9CD915D28BB300F30D6E /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 254D9CD815D28BB300F30D6E /* CoreText.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +33,9 @@
 		254D9CCA15D2870800F30D6E /* GLViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GLViewController.h; sourceTree = "<group>"; };
 		254D9CCB15D2870800F30D6E /* GLViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GLViewController.m; sourceTree = "<group>"; };
 		254D9CCE15D2870800F30D6E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/GLViewController.xib; sourceTree = "<group>"; };
+		254D9CD515D2874200F30D6E /* GradLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GradLabel.m; sourceTree = "<group>"; };
+		254D9CD615D2874200F30D6E /* GradLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GradLabel.h; sourceTree = "<group>"; };
+		254D9CD815D28BB300F30D6E /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -38,6 +43,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				254D9CD915D28BB300F30D6E /* CoreText.framework in Frameworks */,
 				254D9CB915D2870800F30D6E /* UIKit.framework in Frameworks */,
 				254D9CBB15D2870800F30D6E /* Foundation.framework in Frameworks */,
 				254D9CBD15D2870800F30D6E /* CoreGraphics.framework in Frameworks */,
@@ -50,6 +56,7 @@
 		254D9CA915D2870800F30D6E = {
 			isa = PBXGroup;
 			children = (
+				254D9CD815D28BB300F30D6E /* CoreText.framework */,
 				254D9CBE15D2870800F30D6E /* GradLabel */,
 				254D9CB715D2870800F30D6E /* Frameworks */,
 				254D9CB515D2870800F30D6E /* Products */,
@@ -77,6 +84,8 @@
 		254D9CBE15D2870800F30D6E /* GradLabel */ = {
 			isa = PBXGroup;
 			children = (
+				254D9CD515D2874200F30D6E /* GradLabel.m */,
+				254D9CD615D2874200F30D6E /* GradLabel.h */,
 				254D9CC715D2870800F30D6E /* GLAppDelegate.h */,
 				254D9CC815D2870800F30D6E /* GLAppDelegate.m */,
 				254D9CCA15D2870800F30D6E /* GLViewController.h */,
@@ -165,6 +174,7 @@
 				254D9CC515D2870800F30D6E /* main.m in Sources */,
 				254D9CC915D2870800F30D6E /* GLAppDelegate.m in Sources */,
 				254D9CCC15D2870800F30D6E /* GLViewController.m in Sources */,
+				254D9CD715D2874200F30D6E /* GradLabel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
