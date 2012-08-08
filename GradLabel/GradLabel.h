@@ -12,7 +12,6 @@
 @interface GradLabel : UIView 
 {
 	CGGradientRef gradient_;
-	CGGradientRef shiningGradient_;
 	CTLineRef	  lineOfText_;
 }
 
@@ -27,14 +26,7 @@
 @property (nonatomic, retain) UIColor *endColor;
 @property (nonatomic, assign) CGRect   gradVector; // vector in relative coordinates { 0..1, 0..1, 0..1, 0..1 }
 
-@property (nonatomic, assign, getter = isShining) BOOL shining;
-@property (nonatomic, retain) UIColor *shiningStartColor;
-@property (nonatomic, retain) UIColor *shiningEndColor;
-@property (nonatomic, assign) CGFloat  shiningBlur;
-@property (nonatomic, retain) UIColor *shiningColor;
-@property (nonatomic, assign) CGSize   shiningOffset;
-
-	// This shadow is not blured
+@property (nonatomic, assign) CGFloat  shadowBlur;
 @property (nonatomic, retain) UIColor *shadowColor;
 @property (nonatomic, assign) CGSize   shadowOffset;
 

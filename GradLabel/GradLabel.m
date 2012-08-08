@@ -10,9 +10,7 @@
 
 @interface GradLabel()
 
-- (CGGradientRef)appropriateGradient;
 - (CGGradientRef)gradient;
-- (CGGradientRef)shiningGradient;
 
 @property (nonatomic, readonly) CTLineRef lineOfText; // retain
 @property (nonatomic, retain)	NSString *truncatedText;
@@ -36,13 +34,7 @@
 @synthesize endColor   = endColor_;
 @synthesize gradVector = gradVector_;
 
-@synthesize shining			  = shining_;
-@synthesize shiningStartColor = shiningStartColor_;
-@synthesize shiningEndColor	  = shiningEndColor_;
-@synthesize shiningBlur		  = shiningBlur_;
-@synthesize shiningColor	  = shiningColor_;
-@synthesize shiningOffset	  = shiningOffset_;
-
+@synthesize shadowBlur	 = shadowBlur_;
 @synthesize shadowColor	 = shadowColor_;
 @synthesize shadowOffset = shadowOffset_;
 
@@ -56,10 +48,9 @@
 		self.font		= [UIFont  systemFontOfSize:frame.size.height];
 		self.startColor = [UIColor redColor];
 		self.endColor	= [UIColor blueColor];
-		self.gradVector = ((CGRect){{ 0.f, 0.f }, { 0.f, 1.f }});
+		self.gradVector = (CGRect) { { 0.f, 0.f }, { 0.f, 1.f } };
 		
 		[self setContentMode:UIViewContentModeRedraw];
-		
 		
 		lineBreakMode_ = UILineBreakModeWordWrap;
 	}
@@ -72,7 +63,6 @@
 - (void)dealloc 
 {
 	CGGradientRelease(gradient_);
-	CGGradientRelease(shiningGradient_);
 	
 	[self setText:nil];
 	[self setTruncatedText:nil];
@@ -82,9 +72,7 @@
 	[self setStartColor:nil];
 	[self setEndColor:nil];
 	
-	[self setShiningColor:nil];
-	[self setShiningEndColor:nil];
-	[self setShiningStartColor:nil];
+	[self setShadowColor:nil];
 	
     [super dealloc];
 }
@@ -123,55 +111,52 @@
 	{
 		CGContextSaveGState(context);
 
-			// Prepare context for shining shadow
-		if ([self isShining]) {
-			CGContextSetShadowWithColor(context, self.shiningOffset, [self shiningBlur], [[self shiningColor] CGColor]);
+			// Prepare context for shadow if necessary
+		if ([self shadowColor]) {
+			CGContextSetShadowWithColor(context, self.shadowOffset, [self shadowBlur], [[self shadowColor] CGColor]);
 			CGContextBeginTransparencyLayer(context, NULL);
 		}
 		
-			
 			// Drawing text
 		CGContextSetTextMatrix(context, CGAffineTransformMakeScale(1.f, -1.f));
 		CGFloat xForText = textFrame.origin.x;
 		CGFloat yForText = self.verticalAlignment ? selfBounds.size.height - (int)((selfBounds.size.height - [font_ capHeight]) / 2.f)
 												  :	textFrame.origin.y + font_.capHeight;
-			//		Shadow
-		if ([self shadowColor])
-		{
-			CGContextSetTextPosition(context, xForText + self.shadowOffset.width, yForText + self.shadowOffset.height);
-			CGContextSetTextDrawingMode(context, kCGTextFill);
-			[[self shadowColor] setFill];
-			CTLineDraw([self lineOfText], context);
-		}
 		
 			//		Clip text
 		CGContextSetTextPosition(context, xForText, yForText);
 		CGContextSetTextDrawingMode(context, kCGTextClip);
 		CTLineDraw([self lineOfText], context);
-		
-			//		Calculate start and end points for gradients
-		CGPoint gradStartPoint = textFrame.origin;
-		gradStartPoint.x += gradVector_.origin.x * textFrame.size.width;
-		gradStartPoint.y += gradVector_.origin.y * textFrame.size.height;
-		
-		CGPoint gradEndPoint = gradStartPoint;
-		gradEndPoint.x += gradVector_.size.width * textFrame.size.width;
-		gradEndPoint.y += gradVector_.size.height * textFrame.size.height;
 
-			//		Draw gradient
-		CGContextDrawLinearGradient(context, 
-									[self appropriateGradient], 
-									gradStartPoint, 
-									gradEndPoint, 
-									kCGGradientDrawsBeforeStartLocation | kCGGradientDrawsAfterEndLocation );
+			//		Draw gradient in clipped area
+		[self drawGradientInFrame:textFrame context:context];
 
 			//		Draw shining using shadow
-		if ([self isShining]){
+		if ([self shadowColor]){
 			CGContextEndTransparencyLayer(context);
 		}
 		
 		CGContextRestoreGState(context);
 	}
+}
+
+- (void)drawGradientInFrame:(CGRect)textFrame context:(CGContextRef)context
+{
+		//		Calculate start and end points for gradients
+	CGPoint gradStartPoint = textFrame.origin;
+	gradStartPoint.x += gradVector_.origin.x * textFrame.size.width;
+	gradStartPoint.y += gradVector_.origin.y * textFrame.size.height;
+	
+	CGPoint gradEndPoint = gradStartPoint;
+	gradEndPoint.x += gradVector_.size.width * textFrame.size.width;
+	gradEndPoint.y += gradVector_.size.height * textFrame.size.height;
+	
+		//		Draw gradient
+	CGContextDrawLinearGradient(context,
+								[self gradient],
+								gradStartPoint,
+								gradEndPoint,
+								kCGGradientDrawsBeforeStartLocation | kCGGradientDrawsAfterEndLocation );
 }
 
 - (CGGradientRef)gradient
@@ -187,31 +172,6 @@
 	CGColorSpaceRelease(rgb);
 	
 	return gradient_;
-}
-
-- (CGGradientRef)shiningGradient
-{
-	if (shiningGradient_ != NULL) { return shiningGradient_; }
-
-	CGColorSpaceRef rgb = CGColorSpaceCreateDeviceRGB();
-	CFArrayRef colorArray = NULL;
-	CGColorRef colors[2] = { [shiningStartColor_ CGColor], [shiningEndColor_ CGColor] }; 
-	colorArray = CFArrayCreate (kCFAllocatorDefault, (const void **)colors, sizeof(colors)/sizeof(CGColorRef), &kCFTypeArrayCallBacks);
-	shiningGradient_ = CGGradientCreateWithColors(rgb, colorArray, NULL);
-	if (colorArray) { CFRelease(colorArray); }
-	CGColorSpaceRelease(rgb);
-
-	return shiningGradient_;
-}
-
-- (CGGradientRef)appropriateGradient
-{
-	CGGradientRef res = NULL;
-	
-	if ([self isShining]) {	res = [self shiningGradient]; }
-	else				  { res = [self gradient]; }
-	
-	return res;
 }
 
 - (void)setLineOfText:(CTLineRef)lineOfText
@@ -354,11 +314,14 @@
 	return truncatedText_;
 }
 
-- (void)setShining:(BOOL)newShiningVal
+- (void)setShadowColor:(UIColor *)shadowColor
 {
-	if (newShiningVal == shining_) { return; }
-
-	shining_ = newShiningVal;
+	if (shadowColor == shadowColor_) { return; }
+	
+	[shadowColor retain];
+	[shadowColor_ release];
+	shadowColor_ = shadowColor;
+	
 	[self setNeedsDisplay];
 }
 

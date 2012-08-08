@@ -32,17 +32,10 @@
 	label.textAlignment = UITextAlignmentCenter;
 	label.backgroundColor = [UIColor clearColor];
 	
-	label.shining = NO;
-	label.shiningBlur = 5.f;
-	label.shiningOffset = (CGSize) { 3.f, -6.f };
-	label.shiningColor		= [UIColor cyanColor];
-	label.shiningStartColor = [UIColor yellowColor];
-	label.shiningEndColor	= [UIColor magentaColor];
-	
-	label.shadowColor = [UIColor yellowColor];
-	label.shadowOffset = (CGSize) { 4.f, 10.f };
-	[label setNeedsDisplay];
-	
+	label.shadowBlur   = 5.f;
+	label.shadowOffset = (CGSize) { 3.f, -6.f };
+	label.shadowColor  = [UIColor cyanColor];
+		
 	[view addSubview:label];
 }
 
