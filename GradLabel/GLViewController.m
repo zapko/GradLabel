@@ -27,14 +27,25 @@
 	GradLabel *label = [[GradLabel alloc] initWithFrame:bounds];
 	label.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
 	label.text = @"Grad Label, Hello!";
-	label.font = [UIFont fontWithName:@"Helvetica" size:35.f];
+	label.font = [UIFont fontWithName:@"Helvetica-Bold" size:34.f];
+	label.verticalMargin = 2.f;
 	label.verticalAlignment = YES;
 	label.textAlignment = UITextAlignmentCenter;
 	label.backgroundColor = [UIColor clearColor];
 	
-	label.shadowBlur   = 5.f;
-	label.shadowOffset = (CGSize) { 3.f, -6.f };
-	label.shadowColor  = [UIColor cyanColor];
+	label.startColor = [UIColor yellowColor];
+	label.endColor	 = [UIColor blueColor];
+	
+	label.shadowBlur   = 2.f;
+	label.shadowOffset = (CGSize) { 3.f, -2.f };
+	label.shadowColor  = [UIColor magentaColor];
+	
+	label.innerShadowColor = [UIColor greenColor];
+	label.innerShadowOffset = (CGSize) { 0.f, -1.f };
+	label.innerShadowBlur = 3.f;
+	
+	label.frameColor = [UIColor darkGrayColor];
+	label.frameWidth = 1.f;
 		
 	[view addSubview:label];
 }
