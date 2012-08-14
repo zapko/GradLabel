@@ -10,12 +10,10 @@
 
 
 @interface GradLabel : UIView 
-{
-	CGGradientRef gradient_;
-}
 
 @property (nonatomic, copy)   NSString *text;
 @property (nonatomic, retain) UIFont   *font;			// Default: systemFontOfSize:frame.size.height
+
 @property (nonatomic, assign) UITextAlignment textAlignment;
 @property (nonatomic, assign) BOOL	  verticalAlignment; // if YES align text to vertical center, NO – align to top
 @property (nonatomic, assign) CGFloat horizontalMargin;
