@@ -81,11 +81,11 @@ static NSSet *propertiesThatSetNeedsDisplay;
 	propertiesThatResetGradient		 = [[NSSet alloc] initWithObjects:@"gradVector", @"startColor", @"endColor", nil];
 
 	propertiesThatSetNeedsDisplay	 = [[NSSet alloc] initWithObjects:@"text", @"font",
-															 @"textAlignment", @"verticalAlignment", @"horizontalMargin", @"verticalMargin",
-															 @"gradVector", @"startColor", @"endColor",
-															 @"shadowColor", @"shadowOffset", @"shadowBlur",
-															 @"innerShadowColor", @"innerShadowOffset", @"innerShadowBlur",
-															 @"frameColor", @"frameWidth", @"lineBreakMode", nil];
+																	  @"textAlignment", @"verticalAlignment", @"horizontalMargin", @"verticalMargin",
+																	  @"gradVector", @"startColor", @"endColor",
+																	  @"shadowColor", @"shadowOffset", @"shadowBlur",
+																	  @"innerShadowColor", @"innerShadowOffset", @"innerShadowBlur",
+																	  @"frameColor", @"frameWidth", @"lineBreakMode", nil];
 }
 
 - (id)initWithFrame:(CGRect)frame
@@ -111,8 +111,8 @@ static NSSet *propertiesThatSetNeedsDisplay;
 
 - (void)dealloc 
 {
-	self.text		   = nil;
-	self.font		   = nil;
+	self.text = nil;
+	self.font = nil;
 	
 	CGGradientRelease(gradient_);
 	self.lineOfText	   = nil;
@@ -364,11 +364,8 @@ static NSSet *propertiesThatSetNeedsDisplay;
 	
 	// Note that this code will find the first occurrence of any given anchor,
 	// so be careful when choosing anchor characters/strings...
-	NSInteger start;
-	start = 0;
-	
-	NSUInteger end;
-	end = [text_ length];
+	NSInteger  start = 0;
+	NSUInteger end	 = [text_ length];
 	
 	NSUInteger targetLength = end - start;
 
@@ -541,87 +538,12 @@ static NSSet *propertiesThatSetNeedsDisplay;
 		[super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
 	}
 	
-	if ([propertiesThatResetTruncatedText containsObject:keyPath]) {
-		self.truncatedText = nil;
-	}
-	if ([propertiesThatResetLineOfText	  containsObject:keyPath]) {
-		self.lineOfText	= nil; }
-	if ([propertiesThatResetGradTextImage containsObject:keyPath]) {
-		self.gradTextImage = nil; }
-	if ([propertiesThatResetGradient	  containsObject:keyPath]) {
-		self.gradient		= nil; }
-	if ([propertiesThatResetInnerShadow   containsObject:keyPath]) {
-		self.innerShadow	= nil; }
-/*
-	if		([keyPath isEqualToString:@"text"])
-	{
-		self.truncatedText = nil;
-		self.lineOfText	   = nil;
-		self.gradTextImage = nil;
-		self.innerShadow   = nil;
-	}
-	else if ([keyPath isEqualToString:@"font"])
-	{
-		self.lineOfText	   = nil;
-		self.gradTextImage = nil;
-		self.innerShadow   = nil;
-	}
-	else if ([keyPath isEqualToString:@"gradVector"] ||
-			 [keyPath isEqualToString:@"startColor"] ||
-			 [keyPath isEqualToString:@"endColor"])
-	{
-		self.gradTextImage = nil;
-		self.gradient	   = nil;
-	}
-	else if ([keyPath isEqualToString:@"innerShadowColor"] ||
-			 [keyPath isEqualToString:@"innerShadowOffset"] ||
-			 [keyPath isEqualToString:@"innerShadowBlur"])
-	{
-		self.innerShadow = nil;
-	}
-*/
-	[self setNeedsDisplay];
-}
+	if ([propertiesThatResetTruncatedText containsObject:keyPath]) { self.truncatedText = nil; }
+	if ([propertiesThatResetLineOfText	  containsObject:keyPath]) { self.lineOfText	= nil; }
+	if ([propertiesThatResetGradTextImage containsObject:keyPath]) { self.gradTextImage = nil; }
+	if ([propertiesThatResetGradient	  containsObject:keyPath]) { self.gradient		= nil; }
+	if ([propertiesThatResetInnerShadow   containsObject:keyPath]) { self.innerShadow	= nil; }
 
-- (void)setShadowColor:(UIColor *)shadowColor
-{
-	if (shadowColor == shadowColor_) { return; }
-	
-	[shadowColor retain];
-	[shadowColor_ release];
-	shadowColor_ = shadowColor;
-	
-	[self setNeedsDisplay];
-}
-
-- (void)setText:(NSString *)text
-{
-	if ((text_ && [text_ isEqualToString:text]) || (text == text_)) { return; }
-	
-	[text_ release];
-	text_ = [text copy];
-	
-	self.lineOfText = nil;
-	self.truncatedText = nil;
-	self.gradTextImage = nil;
-	self.innerShadow = nil;
-	
-	[self setNeedsDisplay];
-}
-
-- (void)setFont:(UIFont *)font
-{
-	if (font_ == font) { return; }
-
-	[font retain];
-	[font_ release];
-	font_ = font;
-	
-	self.lineOfText	   = nil;
-	self.truncatedText = nil;
-	self.gradTextImage = nil;
-	self.innerShadow = nil;
-	
 	[self setNeedsDisplay];
 }
 

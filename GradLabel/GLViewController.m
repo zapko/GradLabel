@@ -62,7 +62,7 @@
 
 - (void)buttonPressed
 {
-	label_.text = @"Changed Text!";
+//	label_.text = @"Changed Text!";
 //	label_.font = [UIFont fontWithName:@"Helvetica" size:20];
 
 //	label_.textAlignment = UITextAlignmentRight;
@@ -72,7 +72,7 @@
 //	label_.startColor = [UIColor blackColor];
 //	label_.endColor = [UIColor blackColor];
 	
-//	label_.shadowColor = [UIColor grayColor];
+	label_.shadowColor = [UIColor grayColor];
 //	label_.shadowOffset = CGSizeMake(10, 10);
 //	label_.shadowBlur = 10;
 	
