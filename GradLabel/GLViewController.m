@@ -7,16 +7,21 @@
 //
 
 #import "GLViewController.h"
-#import "GradLabel.h"
+#import "ZBGradLabel.h"
 
 @interface GLViewController ()
 {
-	GradLabel *label_;
+	ZBGradLabel *_label;
 }
 
 @end
 
 @implementation GLViewController
+
+- (void)loadView
+{
+	self.view = [[UIView alloc] init];
+}
 
 - (void)viewDidLoad
 {
@@ -27,30 +32,30 @@
 	view.backgroundColor = [UIColor brownColor];
 	
 	CGRect bounds = view.bounds;
-	label_ = [[GradLabel alloc] initWithFrame:bounds];
-	label_.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-	label_.text = @"Grad Label, Hello!";
-	label_.font = [UIFont fontWithName:@"Helvetica-Bold" size:34.f];
-	label_.verticalMargin = 2.f;
-	label_.verticalAlignment = YES;
-	label_.textAlignment = UITextAlignmentCenter;
-	label_.backgroundColor = [UIColor clearColor];
+	_label = [[ZBGradLabel alloc] initWithFrame:bounds];
+	_label.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+	_label.text = @"Grad Label, Hello!";
+	_label.font = [UIFont fontWithName:@"Helvetica-Bold" size:34.f];
+	_label.verticalMargin = 2.f;
+	_label.verticalAlignment = YES;
+	_label.textAlignment = UITextAlignmentCenter;
+	_label.backgroundColor = [UIColor clearColor];
 	
-	label_.startColor = [UIColor yellowColor];
-	label_.endColor	 = [UIColor blueColor];
+	_label.startColor = [UIColor yellowColor];
+	_label.endColor	 = [UIColor blueColor];
 	
-	label_.shadowBlur   = 2.f;
-	label_.shadowOffset = (CGSize) { 3.f, -2.f };
-	label_.shadowColor  = [UIColor magentaColor];
+	_label.shadowBlur   = 2.f;
+	_label.shadowOffset = (CGSize) { 3.f, -2.f };
+	_label.shadowColor  = [UIColor magentaColor];
 	
-	label_.innerShadowColor = [UIColor greenColor];
-	label_.innerShadowOffset = (CGSize) { 0.f, -1.f };
-	label_.innerShadowBlur = 3.f;
+	_label.innerShadowColor = [UIColor greenColor];
+	_label.innerShadowOffset = (CGSize) { 0.f, -1.f };
+	_label.innerShadowBlur = 3.f;
 	
-	label_.frameColor = [UIColor darkGrayColor];
-	label_.frameWidth = 1.f;
+	_label.strokeColor = [UIColor darkGrayColor];
+	_label.strokeWidth = 1.f;
 		
-	[view addSubview:label_];
+	[view addSubview:_label];
 	
 	UIButton *testButton = [[UIButton alloc] initWithFrame:(CGRect){{ 200.f, 400.f }, { 100.f, 100.f }}];
 	testButton.backgroundColor = [UIColor redColor];
@@ -72,7 +77,7 @@
 //	label_.startColor = [UIColor blackColor];
 //	label_.endColor = [UIColor blackColor];
 	
-	label_.shadowColor = [UIColor grayColor];
+	_label.shadowColor = [UIColor grayColor];
 //	label_.shadowOffset = CGSizeMake(10, 10);
 //	label_.shadowBlur = 10;
 	

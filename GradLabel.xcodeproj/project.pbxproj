@@ -14,9 +14,9 @@
 		254D9CC515D2870800F30D6E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 254D9CC415D2870800F30D6E /* main.m */; };
 		254D9CC915D2870800F30D6E /* GLAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 254D9CC815D2870800F30D6E /* GLAppDelegate.m */; };
 		254D9CCC15D2870800F30D6E /* GLViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 254D9CCB15D2870800F30D6E /* GLViewController.m */; };
-		254D9CCF15D2870800F30D6E /* GLViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 254D9CCD15D2870800F30D6E /* GLViewController.xib */; };
-		254D9CD715D2874200F30D6E /* GradLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 254D9CD515D2874200F30D6E /* GradLabel.m */; };
+		254D9CD715D2874200F30D6E /* ZBGradLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 254D9CD515D2874200F30D6E /* ZBGradLabel.m */; };
 		254D9CD915D28BB300F30D6E /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 254D9CD815D28BB300F30D6E /* CoreText.framework */; };
+		25A351C01A9A153A00F0D7EB /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 25A351BF1A9A153A00F0D7EB /* Default-568h@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,10 +32,10 @@
 		254D9CC815D2870800F30D6E /* GLAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GLAppDelegate.m; sourceTree = "<group>"; };
 		254D9CCA15D2870800F30D6E /* GLViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GLViewController.h; sourceTree = "<group>"; };
 		254D9CCB15D2870800F30D6E /* GLViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GLViewController.m; sourceTree = "<group>"; };
-		254D9CCE15D2870800F30D6E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/GLViewController.xib; sourceTree = "<group>"; };
-		254D9CD515D2874200F30D6E /* GradLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GradLabel.m; sourceTree = "<group>"; };
-		254D9CD615D2874200F30D6E /* GradLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GradLabel.h; sourceTree = "<group>"; };
+		254D9CD515D2874200F30D6E /* ZBGradLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZBGradLabel.m; sourceTree = "<group>"; };
+		254D9CD615D2874200F30D6E /* ZBGradLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZBGradLabel.h; sourceTree = "<group>"; };
 		254D9CD815D28BB300F30D6E /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
+		25A351BF1A9A153A00F0D7EB /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,7 +56,7 @@
 		254D9CA915D2870800F30D6E = {
 			isa = PBXGroup;
 			children = (
-				254D9CD815D28BB300F30D6E /* CoreText.framework */,
+				25A351BF1A9A153A00F0D7EB /* Default-568h@2x.png */,
 				254D9CBE15D2870800F30D6E /* GradLabel */,
 				254D9CB715D2870800F30D6E /* Frameworks */,
 				254D9CB515D2870800F30D6E /* Products */,
@@ -74,6 +74,7 @@
 		254D9CB715D2870800F30D6E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				254D9CD815D28BB300F30D6E /* CoreText.framework */,
 				254D9CB815D2870800F30D6E /* UIKit.framework */,
 				254D9CBA15D2870800F30D6E /* Foundation.framework */,
 				254D9CBC15D2870800F30D6E /* CoreGraphics.framework */,
@@ -84,13 +85,12 @@
 		254D9CBE15D2870800F30D6E /* GradLabel */ = {
 			isa = PBXGroup;
 			children = (
-				254D9CD515D2874200F30D6E /* GradLabel.m */,
-				254D9CD615D2874200F30D6E /* GradLabel.h */,
+				254D9CD515D2874200F30D6E /* ZBGradLabel.m */,
+				254D9CD615D2874200F30D6E /* ZBGradLabel.h */,
 				254D9CC715D2870800F30D6E /* GLAppDelegate.h */,
 				254D9CC815D2870800F30D6E /* GLAppDelegate.m */,
 				254D9CCA15D2870800F30D6E /* GLViewController.h */,
 				254D9CCB15D2870800F30D6E /* GLViewController.m */,
-				254D9CCD15D2870800F30D6E /* GLViewController.xib */,
 				254D9CBF15D2870800F30D6E /* Supporting Files */,
 			);
 			path = GradLabel;
@@ -134,8 +134,13 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = GL;
-				LastUpgradeCheck = 0440;
+				LastUpgradeCheck = 0610;
 				ORGANIZATIONNAME = Zababako;
+				TargetAttributes = {
+					254D9CB315D2870800F30D6E = {
+						DevelopmentTeam = US2HBJAQNQ;
+					};
+				};
 			};
 			buildConfigurationList = 254D9CAE15D2870800F30D6E /* Build configuration list for PBXProject "GradLabel" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -160,7 +165,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				254D9CC315D2870800F30D6E /* InfoPlist.strings in Resources */,
-				254D9CCF15D2870800F30D6E /* GLViewController.xib in Resources */,
+				25A351C01A9A153A00F0D7EB /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -174,7 +179,7 @@
 				254D9CC515D2870800F30D6E /* main.m in Sources */,
 				254D9CC915D2870800F30D6E /* GLAppDelegate.m in Sources */,
 				254D9CCC15D2870800F30D6E /* GLViewController.m in Sources */,
-				254D9CD715D2874200F30D6E /* GradLabel.m in Sources */,
+				254D9CD715D2874200F30D6E /* ZBGradLabel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -189,14 +194,6 @@
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
-		254D9CCD15D2870800F30D6E /* GLViewController.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				254D9CCE15D2870800F30D6E /* en */,
-			);
-			name = GLViewController.xib;
-			sourceTree = "<group>";
-		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
@@ -204,7 +201,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -217,11 +213,11 @@
 					"$(inherited)",
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -230,13 +226,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
@@ -250,6 +244,7 @@
 		254D9CD315D2870800F30D6E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "GradLabel/GradLabel-Prefix.pch";
 				INFOPLIST_FILE = "GradLabel/GradLabel-Info.plist";
@@ -261,6 +256,7 @@
 		254D9CD415D2870800F30D6E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "GradLabel/GradLabel-Prefix.pch";
 				INFOPLIST_FILE = "GradLabel/GradLabel-Info.plist";
@@ -288,6 +284,7 @@
 				254D9CD415D2870800F30D6E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
